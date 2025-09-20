@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Navbar } from "@/components/Navbar"
 import { BuyTicketsModal } from "@/components/BuyTicketsModal"
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi"
+import { useAppKit } from '@reown/appkit/react'
 import { RPS_ADDRESS, ABI } from "@/constants"
 import { parseEther } from "viem"
 
@@ -23,6 +24,7 @@ export default function Home() {
   }
 
   const { address } = useAccount()
+  const { open } = useAppKit()
 
   const { data: ticketBalance, refetch: refetchBalance } = useReadContract({
     abi: ABI,
@@ -173,7 +175,19 @@ export default function Home() {
                 </div>
               </div>
 
-              {ticketBalance && Number(ticketBalance) > 0 ? (
+              {!address ? (
+                <div className="space-y-6">
+                  <div className="text-2xl text-muted-foreground">
+                    Please connect your wallet to start playing
+                  </div>
+                  <button
+                    onClick={() => open()}
+                    className="px-8 py-4 text-xl font-semibold bg-foreground text-background border border-border rounded-lg hover:scale-105 hover:cursor-pointer transform transition-all duration-200"
+                  >
+                    Connect Wallet
+                  </button>
+                </div>
+              ) : ticketBalance && Number(ticketBalance) > 0 ? (
                 <>
                   <div className="flex justify-center space-x-8">
                     <div className="text-8xl animate-bounce delay-0">🪨</div>
