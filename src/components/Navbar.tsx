@@ -28,12 +28,16 @@ export function Navbar({ ticketBalance, onBuyTickets }: NavbarProps) {
             <span className="text-sm">+</span>
           </button>
           <ModeToggle />
-          <button
-            onClick={() => open()}
-            className="px-4 py-2 text-sm font-medium bg-foreground text-background border border-border rounded hover:cursor-pointer hover:opacity-80 transition-opacity duration-200"
-          >
-            {isConnected ? `${address?.slice(0, 6)}...${address?.slice(-4)}` : 'Connect Wallet'}
-          </button>
+          {isConnected ? (
+            <w3m-button size="sm" />
+          ) : (
+            <button
+              onClick={() => open()}
+              className="px-4 py-2 text-sm font-medium bg-foreground text-background border border-border rounded hover:cursor-pointer hover:opacity-80 transition-opacity duration-200"
+            >
+              Connect Wallet
+            </button>
+          )}
         </div>
       </div>
     </nav>
