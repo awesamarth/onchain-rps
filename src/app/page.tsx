@@ -163,9 +163,14 @@ export default function Home() {
                 <h1 className="text-6xl font-bold text-foreground">
                   Onchain Rock Paper Scissors
                 </h1>
-                <p className="text-lg text-muted-foreground">
-                  🎫 1 ticket per game • 0.002 ETH reward on victory
-                </p>
+                <div className="space-y-5">
+                  <p className="text-2xl text-foreground/70">
+                    Verifiable randomness powered by Pyth Entropy
+                  </p>
+                  <p className="text-lg text-muted-foreground">
+                    🎫 1 ticket per game • 0.002 ETH reward on victory
+                  </p>
+                </div>
               </div>
 
               {ticketBalance && Number(ticketBalance) > 0 ? (

@@ -11,7 +11,7 @@ interface NavbarProps {
 
 export function Navbar({ ticketBalance, onBuyTickets }: NavbarProps) {
   const { open } = useAppKit()
-  const { address, isConnected } = useAccount()
+  const { isConnected } = useAccount()
   return (
     <nav className="border-b bg-background/95 backdrop-blur w-full supports-[backdrop-filter]:bg-background/60">
       <div className="w-full max-w-none px-4 flex h-16 items-center justify-between">
