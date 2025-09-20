@@ -2,6 +2,7 @@
 
 import { ModeToggle } from "./ThemeToggle"
 import { useAppKit } from '@reown/appkit/react'
+import Link from "next/link"
 import { useAccount } from 'wagmi'
 
 interface NavbarProps {
@@ -15,9 +16,10 @@ export function Navbar({ ticketBalance, onBuyTickets }: NavbarProps) {
   return (
     <nav className="border-b bg-background/95 backdrop-blur w-full supports-[backdrop-filter]:bg-background/60">
       <div className="w-full max-w-none px-4 flex h-16 items-center justify-between">
-        <div className="flex items-center space-x-4">
+        
+        <Link href="/" className="flex items-center space-x-4">
           <h1 className="text-xl font-bold">Rock Paper Scissors</h1>
-        </div>
+        </Link>
 
         <div className="flex items-center space-x-4">
           <button

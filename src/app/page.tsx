@@ -291,6 +291,11 @@ export default function Home() {
                   {gameResult === "lose" && "You Lost :("}
                   {gameResult === "tie" && "It's a Tie"}
                 </h2>
+                {gameResult === "win" && (
+                  <p className="text-lg text-green-600">
+                    0.002 ETH has been sent to your wallet address
+                  </p>
+                )}
               </div>
 
               {/* Show both choices */}
@@ -316,25 +321,41 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Play again or buy tickets */}
-              {ticketBalance && Number(ticketBalance) > 0 ? (
-                <button
-                  onClick={playAgain}
-                  className="px-6 py-3 text-lg font-semibold bg-foreground text-background border border-border rounded-lg hover:scale-105 hover:cursor-pointer transform transition-all duration-200"
-                >
-                  Play Again
-                </button>
-              ) : (
-                <div className="space-y-4">
-                  <p className="text-xl text-muted-foreground">No tickets remaining</p>
-                  <button
-                    onClick={handleBuyTickets}
-                    className="px-6 py-3 text-lg font-semibold bg-foreground text-background border border-border rounded-lg hover:scale-105 hover:cursor-pointer transform transition-all duration-200"
-                  >
-                    Buy More Tickets
-                  </button>
-                </div>
-              )}
+              {/* Action buttons */}
+              <div className="flex flex-col space-y-4 w-full max-w-xs mx-auto">
+                {ticketBalance && Number(ticketBalance) > 0 ? (
+                  <>
+                    <button
+                      onClick={playAgain}
+                      className="w-full px-6 py-3 text-lg font-semibold bg-foreground text-background border border-border rounded-lg hover:scale-105 hover:cursor-pointer transform transition-all duration-200"
+                    >
+                      Play Again
+                    </button>
+                    <button
+                      onClick={resetGame}
+                      className="w-full px-6 py-3 text-lg font-semibold bg-muted text-foreground border border-border rounded-lg hover:scale-105 hover:cursor-pointer transform transition-all duration-200"
+                    >
+                      Go Back
+                    </button>
+                  </>
+                ) : (
+                  <div className="space-y-4 w-full">
+                    <p className="text-xl text-muted-foreground">No tickets remaining</p>
+                    <button
+                      onClick={handleBuyTickets}
+                      className="w-full px-6 py-3 text-lg font-semibold bg-foreground text-background border border-border rounded-lg hover:scale-105 hover:cursor-pointer transform transition-all duration-200"
+                    >
+                      Buy More Tickets
+                    </button>
+                    <button
+                      onClick={resetGame}
+                      className="w-full px-6 py-3 text-lg font-semibold bg-muted text-foreground border border-border rounded-lg hover:scale-105 hover:cursor-pointer transform transition-all duration-200"
+                    >
+                      Go Back
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           )}
 
