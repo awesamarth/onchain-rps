@@ -1,6 +1,8 @@
 "use client"
 
 import { ModeToggle } from "./ThemeToggle"
+import { useAppKit } from '@reown/appkit/react'
+import { useAccount } from 'wagmi'
 
 interface NavbarProps {
   ticketBalance: number
@@ -8,6 +10,8 @@ interface NavbarProps {
 }
 
 export function Navbar({ ticketBalance, onBuyTickets }: NavbarProps) {
+  const { open } = useAppKit()
+  const { address, isConnected } = useAccount()
   return (
     <nav className="border-b bg-background/95 backdrop-blur w-full supports-[backdrop-filter]:bg-background/60">
       <div className="w-full max-w-none px-4 flex h-16 items-center justify-between">
@@ -24,7 +28,12 @@ export function Navbar({ ticketBalance, onBuyTickets }: NavbarProps) {
             <span className="text-sm">+</span>
           </button>
           <ModeToggle />
-          <w3m-button />
+          <button
+            onClick={() => open()}
+            className="px-4 py-2 text-sm font-medium bg-foreground text-background border border-border rounded hover:cursor-pointer hover:opacity-80 transition-opacity duration-200"
+          >
+            {isConnected ? `${address?.slice(0, 6)}...${address?.slice(-4)}` : 'Connect Wallet'}
+          </button>
         </div>
       </div>
     </nav>
